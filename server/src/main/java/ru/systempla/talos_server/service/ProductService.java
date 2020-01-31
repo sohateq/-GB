@@ -26,7 +26,7 @@ public interface ProductService {
      * @param id - ID продукта
      * @return - объект клиента с заданным ID, иначе null
      */
-    Optional<Product> read(UUID id);
+    Optional<Product> read(Integer id);
 
     /**
      * Обновляет продукт с заданным ID,
@@ -35,13 +35,13 @@ public interface ProductService {
      * @param id - id продукта который нужно обновить
      * @return - 1 если продукт был обновлён, иначе 0
      */
-    int update(Product product, UUID id);
+    int update(Product product, Integer id);
 
     /**
      * Удаляет продукт с заданным ID
      * @param id - id продукта, который нужно удалить
      * @return - 1 если продукт был удален, иначе 0
      */
-    int delete(UUID id);
+    int delete(Integer id);
 }
 
