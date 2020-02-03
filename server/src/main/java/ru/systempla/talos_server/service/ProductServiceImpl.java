@@ -16,7 +16,7 @@ public class ProductServiceImpl implements ProductService{
     private final ProductDao productDao;
 
     @Autowired
-    public ProductServiceImpl(@Qualifier("fakeDao") ProductDao productDao){
+    public ProductServiceImpl(@Qualifier("PostgresProductDao") ProductDao productDao){
         this.productDao = productDao;
     }
 
@@ -31,17 +31,17 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public Optional<Product> read(UUID id) {
+    public Optional<Product> read(Integer id) {
         return productDao.selectProductById(id) ;
     }
 
     @Override
-    public int update(Product product, UUID id) {
+    public int update(Product product, Integer id) {
         return productDao.updateProductById(id, product);
     }
 
     @Override
-    public int delete(UUID id) {
+    public int delete(Integer id) {
         return productDao.deleteProductById(id);
     }
 }
