@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.systempla.talos_server.model.Product;
 import ru.systempla.talos_server.service.ProductService;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -24,7 +23,7 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<?> create(@Valid @RequestBody Product product) {
+    public ResponseEntity<?> create(@RequestBody Product product) {
         productService.create(product);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -39,7 +38,7 @@ public class ProductController {
     }
 
     @GetMapping(value = "{id}")
-    public ResponseEntity<Optional<Product>> read(@PathVariable(name = "id") Integer id) {
+    public ResponseEntity<Optional<Product>> read(@PathVariable(name = "id") UUID id) {
         final Optional<Product> product = productService.read(id);
 
         return !product.isEmpty()
@@ -48,7 +47,7 @@ public class ProductController {
     }
 
     @PutMapping(value = "{id}")
-    public ResponseEntity<?> update(@PathVariable(name = "id") Integer id, @Valid @RequestBody Product product) {
+    public ResponseEntity<?> update(@PathVariable(name = "id") UUID id, @RequestBody Product product) {
         final int updated = productService.update(product, id);
 
         return updated==1
@@ -57,7 +56,7 @@ public class ProductController {
     }
 
     @DeleteMapping(value = "{id}")
-    public ResponseEntity<?> delete(@PathVariable(name = "id") Integer id) {
+    public ResponseEntity<?> delete(@PathVariable(name = "id") UUID id) {
         final int deleted = productService.delete(id);
 
         return deleted==1

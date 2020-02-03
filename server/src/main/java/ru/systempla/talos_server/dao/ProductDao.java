@@ -8,13 +8,18 @@ import java.util.UUID;
 
 public interface ProductDao {
 
-    int insertProduct(Product product);
+    int insertProduct(UUID id, Product product);
+
+    default int insertProduct(Product product) {
+        UUID id = UUID.randomUUID();
+        return insertProduct(id, product);
+    }
 
     List<Product> selectAllProducts();
 
-    Optional<Product> selectProductById(Integer id);
+    Optional<Product> selectProductById(UUID id);
 
-    int deleteProductById(Integer id);
+    int deleteProductById(UUID id);
 
-    int updateProductById(Integer id, Product update);
+    int updateProductById(UUID id, Product update);
 }
